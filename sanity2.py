@@ -24,8 +24,8 @@ def liukuluvuksi(syote):
     if syote.find('.') != -1:
         osat = syote.split('.')
 
-        # Selvitetään onko osia enemmän kuin 2, eli onko useita pisteitä
-        if len(osat) > 2:
+    # Selvitetään onko osia enemmän kuin 2, eli onko useita pisteitä
+    if len(osat) > 2:
             virhekoodi = 1
             virhesanoma = 'Syöte sisältää useita erottimia. Vain yksi arvo on sallittu'
             
