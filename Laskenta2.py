@@ -7,17 +7,18 @@ def bmi(paino, pituus):
     """Laske painoindeksin kaavalla paino jaettuna pituuden neliöllä
 
     Args:
-        paino (kg): paino kiloina (kg)
-        pituus (cm): pituus senttimetreinä (cm)
+        paino (float): paino kiloina (kg)
+        pituus (float): pituus senttimetreinä (cm)
 
     Returns:
         float: painoindeksi
     """
-    painoindeksi = paino / pituus ** 2
+    painoindeksi = paino / (pituus/100) ** 2
+    return painoindeksi
 
 # Aikuisen rasvaprosentti
 def rasvaprosentti(bmi, ika, sukupuoli):
-        """[summary]
+        """Laskee henkilön rasvaprosentin
 
         Args:
             bmi (float): painoindeksi
@@ -51,21 +52,21 @@ def rasvaprosentti(bmi, ika, sukupuoli):
 
     # Lapsen rasvaprosentti
     def lapsen rasvaprosentti(bmi, ika, sukupuoli)
-        """[summary]
+       
+        rprosentti = 1.5 * bmi - 0,7 * ika - 3.6 * sukupuoli + 1,4
+        return rprosentti
+        
+        
+         """[summary]
         
         Args:
-            bmi (float): painoiindeksi
+            bmi (float): painoindeksi
             ika (float):ika vuosina
             sukupuoli (float): 1 Miehet , 0 Naiset
 
         Returns:
             float: lapsen rasvaprosentti
         """
-        rprosentti = 1.5 * bmi - 0,7 * ika - 3.6 * sukupuoli + 1,4
-        return rprosentti
-        
-        
-        
         
         
         
@@ -73,3 +74,17 @@ def rasvaprosentti(bmi, ika, sukupuoli):
         pituus = 120
         paino = 18
         print('Rasvaprosentti:', rasvaprosentti() )
+        # Testit
+ if __name__=='_main_':
+
+        # 1. testi oma painoindeksi
+        pituus = 150
+        paino =   50
+        omabmi = bmi(paino, pituus)
+        print('Pituus', pituus, 'Paino', paino, 'Painoindeksi', omabmi) 
+
+        # 2. testi oma rasvaprosentti
+        ika = 43
+        sukupuoli = 0
+        print('Rasvaprosentti:', rasvaprosentti(omabmi, ika, sukupuoli))      
+    
