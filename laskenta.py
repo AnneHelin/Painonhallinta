@@ -1,13 +1,11 @@
-"""
-    Moduli, jonka funktiolla lasketaan painoindeksi ja kehon rasvvaprosentti
-"""
+# Painoindeksi
+def bmi(paino, pituus):
+    # FIXME: Seuraava selitys virheellinen
+    """Laskee painoindeksin kaavalla paino jaettuna pituuden neliöllä
 
-# Kirjastojen lataukset 
-
-
-# Luokkien ja funktioiden määritykset
-
-
-
-# Koodi, joka suoritetaan vain jos tämä tiedosto käynnistetään konsolista, esim "testit"
-
+    """Laskee painoindeksin kaavalla paino jaettuna pituuden sadaosan neliöllä
+    Args:
+        paino (float):paino kiloina (kg)
+        paino (float): paino kiloina (kg)
+        pituus (float): pituus senntimetreinä (cm)
+    Returns:
