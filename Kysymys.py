@@ -1,16 +1,15 @@
-# Rutiineja tietojen kysymiseen käyttäjältä
+# RUTIINEJA TIETOJEN KYSYMISEKSI KÄYTTÄJÄLTÄ
 
 # Kirjastojen ja modulien lataukset
 import sanity2
 
 # Funktioiden määrittelyt
-
 def kysy_liukuluku(kysymys, alaraja, ylaraja):
     """Kysyy käyttäjältä liukuluvun tai kokonaisluvun ja tarkistaa syötteen oikean tietotyypin ja suuruuden
 
     Args:
         kysymys (str): Käyttäjälle esitettävä kysymys
-        alaraja (float]: pienin sallittu arvo
+        alaraja (float): pienin sallittu arvo
         ylaraja (float): suurin sallittu arvo
 
     Returns:
@@ -25,4 +24,35 @@ def kysy_liukuluku(kysymys, alaraja, ylaraja):
         # Esitetään parametrina annettu kysymys ja tallennetta vastaus
         vastaus_str =input(kysymys + '')
 
-        # Tarkistetaan 
+        # Tarkistetaan syötteem järkevyys, virhrtiedot ja arvo tallenneteen listaan 
+          tulokset = sanity2.liukuluvuksi(vastaus_str)
+       
+        # Katsotaan onko virhekoodi 0, ja tallennetaan arvo muuttujaan vastaus
+        if tulokset[0] == 0:
+            vastaus = tulokset[2]
+            
+            # Tehdään raja-arvotarkistus, virhetiedot muuttujaan tarkistusviesti
+            tarkistusviesti = sanity2.rajatarkistus(vastaus, alaraja, ylaraja)
+            
+            # Katsotaan onko arvo sallittujen rajojen sisällä tutkimalla virhekoodia
+            if tarkistusviesti[0] == 0:
+                tapahtui_virhe = False
+                luku = vastaus
+            
+            else:
+                # Jos raja-arvotarkistuksen virhekoodi ei ole 0, tulostetaan virheilmoitus
+                print(tarkistusviesti[1])
+        
+        # Jos liukulukutarkistuksen virhekoodi ei ole 0, tulostetaan virheilmoitus    
+        else:
+            print(tulokset[1])
+
+    return luku
+
+# TODO: Tähän funktio, jolla tarkistetaan, että syöte on tekstiä
+
+# Koodauksen aikaiset tilapaistestit
+if __name__ == '__main__':
+    vastaus = kysy_liukuluku('Anna luku', 100, 200)
+    print(vastaus)
+        

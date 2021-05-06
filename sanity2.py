@@ -1,9 +1,14 @@
 # Tiivistetty versio Sanity.py-modulista eli suurinpiirtein se, mitä tuhosin vahingossa
 
+from sanity253 import rajatarkistus
+
+
 def liukuluvuksi(syote):
     """Tarkistaa syötteen ja muuttaa sen liukuluvuksi
+    
     Args:
         syote (string): Käyttäjän syöttämä arvo
+   
     Returns:
         list: virhekoodi, virhesanoma ja syöte liukulukuna
     """
@@ -24,8 +29,8 @@ def liukuluvuksi(syote):
     if syote.find('.') != -1:
         osat = syote.split('.')
 
-    # Selvitetään onko osia enemmän kuin 2, eli onko useita pisteitä
-    if len(osat) > 2:
+        # Selvitetään onko osia enemmän kuin 2, eli onko useita pisteitä
+        if len(osat) > 2:
             virhekoodi = 1
             virhesanoma = 'Syöte sisältää useita erottimia. Vain yksi arvo on sallittu'
             
@@ -49,7 +54,7 @@ def liukuluvuksi(syote):
                 virhesanoma = 'Ennen desimaalierotinta ylimääräisiä merkkejä: vain numerot ja desimaalipiste on sallittu'
                 
 
-    # Tarkistetaan onko desimaaliton syöte numeerista
+     # Tarkistetaan onko desimaaliton syöte numeerista
     elif syote.isnumeric():
         arvo = float(syote)
     else:
@@ -59,8 +64,6 @@ def liukuluvuksi(syote):
     # Muodostetaan funktion paluuarvo ja palautetaan se
     paluuarvo = [virhekoodi, virhesanoma, arvo]
     return paluuarvo
-
-
 
 
     # Funktio, jolla tarkistetaan, että syötetty arvo on haluttujen rajojen sisällä
@@ -83,11 +86,13 @@ def liukuluvuksi(syote):
         if arvo < alaraja:
             virhekoodi = 1
             virhesanoma = 'Arvo on alle alarajan (' + str(alaraja) +')'        
+        
         # Arvo yli ylärajan
         if arvo > ylaraja:
             virhekoodi = 2
             virhesanoma = 'Arvo on yli ylärajan (' + str(ylaraja) + ')'
 
+       
         # Paluuarvon määritys ja palautus
         paluuarvo = [virhekoodi, virhesanoma]
         return paluuarvo
@@ -103,7 +108,7 @@ def liukuluvuksi(syote):
         syote = '123,5'
         print('Syöte', syote, 'Tulokset', liukuluvuksi(syote))
 
-        # 3. Syötteessä useiita osia
+        # 3. Syötteessä useita osia
         syote = '12.3.2'
         print('Syöte', syote, 'Tulokset', liukuluvuksi(syote))
   
@@ -115,3 +120,22 @@ def liukuluvuksi(syote):
         syote = '50.2 kg'
         print('Syöte', syote, 'Tulokset:', liukuluvuksi(syote))
         # Syöte kokonaisuudessaan tekstissä
+        syote = 'sataviisi'
+        print('Syöte:', syote, 'Tulokset: ', liukuluvuksi(syote))
+
+        # Rajatarkistukset
+
+        alaraja = 1
+        yläraja = 3
+
+        # 1. Rajojen sisällä
+        arvo = 1.8
+        print('Arvo:', arvo, 'Tulokset:', rajatarkistus(arvo, alaraja, ylaraja))
+
+        # 2. Alle alarajan
+        arvo = 0.8
+        print('Arvo:', arvo, 'Tulokset:', rajatarkistus(arvo, alaraja, ylaraja))
+
+        # 3. Yli ylärajan
+        arvo = 3.8
+        print('Arvo:', arvo, 'Tulokset:' , rajatarkistus(arvo, alaraja, ylaraja))

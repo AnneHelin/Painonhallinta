@@ -39,7 +39,7 @@ while True:
             lapsi = luokat.Lapsi(etunimi, sukunimi, pituus, paino, ika, sukupuoli) 
             lista.append(lapsi)
 
-         # Poistuminen ikuisesta silmukasta
+    # Poistuminen ikuisesta silmukasta
     uusi = input('Lasketaanko uuden henkilön rasvaprosentti? (K/e)')
     if uusi.upper() == 'E':
         break     
